@@ -28,15 +28,11 @@ A cross-platform desktop application built in C# that monitors system resources 
 2. Navigate to the project directory
 3. Build the solution:
 
-```
 dotnet build
-```
 
 ### Running the Application
 
-```
 dotnet run --project SystemCheck
-```
 
 ## Configuration
 
@@ -45,7 +41,7 @@ The application can be configured through the `appsettings.json` file:
 ```json
 {
   "MonitoringIntervalSeconds": 5,
-  "ApiEndpoint": "https://example.com/api/systemstats",
+  "ApiEndpoint": "https://localhost:7203/api/SystemData",
   "FileLogger": {
     "FilePath": "logs/system_stats.log"
   }
@@ -87,13 +83,11 @@ public class MyCustomPlugin : IMonitorPlugin
     
     public Task InitializeAsync()
     {
-        // Setup code
         return Task.CompletedTask;
     }
     
     public Task HandleUpdateAsync(SystemResourceData data)
     {
-        // Handle the system resource data
         return Task.CompletedTask;
     }
 }
@@ -103,7 +97,7 @@ public class MyCustomPlugin : IMonitorPlugin
 
 ### Cross-Platform Compatibility
 
-The application uses a strategy pattern to abstract platform-specific monitoring code. Currently, Windows implementations are provided, but the architecture allows for easy addition of Linux and macOS implementations.
+The application uses a strategy pattern to abstract platform-specific monitoring code. Currently, Windows implementations is provided, but the architecture allows for easy addition of Linux and macOS implementations.
 
 ### Plugin Architecture
 
@@ -153,3 +147,11 @@ To use the SystemCheck application with the API, update the `appsettings.json` f
 - Full monitoring support is currently implemented for Windows only
 - The REST API plugin doesn't handle authentication
 - No built-in visualization of historical data
+
+### Design Decisions:
+
+I chose a clean architecture pattern to ensure separation of concerns and future extensibility. The core system monitoring logic is abstracted behind interfaces, allowing platform-specific implementations (currently for Windows) to be swapped or extended easily. A plugin architecture was implemented using an observer pattern, enabling new integrations (such as file logging or REST API posting) without modifying the core logic. Dependency injection is used throughout to manage services and plugins, making the codebase modular and testable. Configuration is handled via appsettings.json for flexibility.
+
+### Challenges:
+
+The main challenge was ensuring cross-platform compatibility while keeping the codebase clean and maintainable. Abstracting platform-specific resource monitoring required careful interface design. Managing plugin execution and error handling in a way that doesn’t impact core monitoring was also important. Cleaning up template code and resolving duplicate assembly attribute errors after removing unused files was necessary to keep the project focused and buildable. Overall the architecture supports easy addition of new plugins and platform support in the future.

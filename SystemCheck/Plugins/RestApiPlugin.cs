@@ -7,9 +7,7 @@ using System.Text;
 
 namespace SystemCheck.Plugins
 {
-    /// <summary>
     /// Plugin that sends system resource data to a REST API endpoint
-    /// </summary>
     public class RestApiPlugin : IMonitorPlugin
     {
         private readonly ILogger<RestApiPlugin> _logger;
@@ -25,9 +23,7 @@ namespace SystemCheck.Plugins
             _httpClient = new HttpClient();
         }
 
-        /// <summary>
         /// Initialize the plugin
-        /// </summary>
         public Task InitializeAsync()
         {
             _logger.LogInformation("REST API plugin initialized with endpoint: {ApiEndpoint}", 
@@ -41,10 +37,8 @@ namespace SystemCheck.Plugins
             
             return Task.CompletedTask;
         }
-
-        /// <summary>
+        
         /// Handle system resource data update by sending to REST API
-        /// </summary>
         public async Task HandleUpdateAsync(SystemResourceData data)
         {
             if (string.IsNullOrEmpty(_configuration.ApiEndpoint))
@@ -68,14 +62,14 @@ namespace SystemCheck.Plugins
 
                 // Send the data to the API endpoint
                 var response = await _httpClient.PostAsync(_configuration.ApiEndpoint, content);
-                
+
                 if (response.IsSuccessStatusCode)
                 {
                     _logger.LogInformation("Successfully sent system resource data to API endpoint");
                 }
                 else
                 {
-                    _logger.LogWarning("Failed to send system resource data to API endpoint. Status code: {StatusCode}", 
+                    _logger.LogWarning("Failed to send system resource data to API endpoint. Status code: {StatusCode}",
                         response.StatusCode);
                 }
             }

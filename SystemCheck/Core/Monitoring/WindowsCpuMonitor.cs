@@ -4,9 +4,7 @@ using SystemCheck.Core.Interfaces;
 
 namespace SystemCheck.Core.Monitoring
 {
-    /// <summary>
     /// Windows implementation of CPU monitoring using PerformanceCounter
-    /// </summary>
     public class WindowsCpuMonitor : ICpuMonitor
     {
         private readonly ILogger<WindowsCpuMonitor> _logger;
@@ -33,9 +31,7 @@ namespace SystemCheck.Core.Monitoring
             }
         }
 
-        /// <summary>
         /// Gets the current CPU usage percentage
-        /// </summary>
         public Task<double> GetCpuUsagePercentAsync()
         {
             try

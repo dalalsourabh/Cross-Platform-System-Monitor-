@@ -6,9 +6,7 @@ using SystemCheck.Core.Models;
 
 namespace SystemCheck.Plugins
 {
-    /// <summary>
     /// Plugin that logs system resource data to a file
-    /// </summary>
     public class FileLoggerPlugin : IMonitorPlugin
     {
         private readonly ILogger<FileLoggerPlugin> _logger;
@@ -24,9 +22,7 @@ namespace SystemCheck.Plugins
             _logFilePath = _configuration["FileLogger:FilePath"] ?? "logs/system_stats.log";
         }
 
-        /// <summary>
         /// Initialize the plugin by ensuring the log directory exists
-        /// </summary>
         public Task InitializeAsync()
         {
             try
@@ -48,9 +44,7 @@ namespace SystemCheck.Plugins
             }
         }
 
-        /// <summary>
         /// Handle system resource data update by logging to file
-        /// </summary>
         public Task HandleUpdateAsync(SystemResourceData data)
         {
             try

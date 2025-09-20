@@ -4,9 +4,7 @@ using SystemCheck.Core.Models;
 
 namespace SystemCheck.Core.Monitoring
 {
-    /// <summary>
     /// Main service that coordinates system resource monitoring
-    /// </summary>
     public class MonitoringService : IMonitoringService
     {
         private readonly ICpuMonitor _cpuMonitor;
@@ -35,9 +33,6 @@ namespace SystemCheck.Core.Monitoring
             _logger = logger;
         }
 
-        /// <summary>
-        /// Start the monitoring service
-        /// </summary>
         public void Start()
         {
             if (_isRunning)
@@ -57,10 +52,7 @@ namespace SystemCheck.Core.Monitoring
             _timer = new Timer(CollectAndProcessData, null, TimeSpan.Zero, interval);
             _isRunning = true;
         }
-
-        /// <summary>
-        /// Stop the monitoring service
-        /// </summary>
+        
         public void Stop()
         {
             if (!_isRunning)

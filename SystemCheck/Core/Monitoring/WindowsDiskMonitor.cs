@@ -3,9 +3,7 @@ using SystemCheck.Core.Interfaces;
 
 namespace SystemCheck.Core.Monitoring
 {
-    /// <summary>
     /// Windows implementation of disk monitoring
-    /// </summary>
     public class WindowsDiskMonitor : IDiskMonitor
     {
         private readonly ILogger<WindowsDiskMonitor> _logger;
@@ -17,9 +15,7 @@ namespace SystemCheck.Core.Monitoring
             _driveLetter = Path.GetPathRoot(Environment.SystemDirectory) ?? "C:\\";
         }
 
-        /// <summary>
         /// Gets the current used disk space in bytes
-        /// </summary>
         public Task<long> GetUsedDiskSpaceBytesAsync()
         {
             try
@@ -34,9 +30,7 @@ namespace SystemCheck.Core.Monitoring
             }
         }
 
-        /// <summary>
         /// Gets the total disk space in bytes
-        /// </summary>
         public Task<long> GetTotalDiskSpaceBytesAsync()
         {
             try

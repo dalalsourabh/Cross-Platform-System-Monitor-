@@ -4,9 +4,7 @@ using SystemCheck.Core.Interfaces;
 
 namespace SystemCheck.Core.Monitoring
 {
-    /// <summary>
     /// Windows implementation of memory monitoring
-    /// </summary>
     public class WindowsMemoryMonitor : IMemoryMonitor
     {
         private readonly ILogger<WindowsMemoryMonitor> _logger;
@@ -34,9 +32,7 @@ namespace SystemCheck.Core.Monitoring
             _logger = logger;
         }
 
-        /// <summary>
         /// Gets the current used memory in bytes
-        /// </summary>
         public Task<long> GetUsedMemoryBytesAsync()
         {
             try
@@ -51,9 +47,7 @@ namespace SystemCheck.Core.Monitoring
             }
         }
 
-        /// <summary>
         /// Gets the total system memory in bytes
-        /// </summary>
         public Task<long> GetTotalMemoryBytesAsync()
         {
             try
